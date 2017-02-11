@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kxw-hH-Ftv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kxw-hH-Ftv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -58,28 +58,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a string to send" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="N3U-zI-BBe">
-                                <rect key="frame" x="124" y="79" width="145" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ZWk-2i-lri"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="g0Q-fE-BlF">
-                                <rect key="frame" x="84" y="424" width="93" height="50"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9qz-Nu-Aab">
-                                        <rect key="frame" x="0.0" y="0.0" width="93" height="50"/>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
-                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kg2-oA-5gU">
-                                <rect key="frame" x="151" y="372" width="93" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="nMd-hO-NOq"/>
-                                    <constraint firstAttribute="width" constant="93" id="ovM-3l-9q3"/>
-                                </constraints>
+                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kg2-oA-5gU">
+                                <rect key="frame" x="37" y="191" width="93" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.58824206849725713" blue="0.69407739760564535" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                 <state key="normal" title="Send 10K">
                                     <color key="titleShadowColor" red="0.42467421293258667" green="0.42466151714324951" blue="0.42466866970062256" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -88,41 +70,9 @@
                                     <action selector="send10KButtonPressed:" destination="cuW-bU-LcT" eventType="touchUpInside" id="Mae-lT-fi9"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="n5a-NH-cxq">
-                                <rect key="frame" x="145" y="34" width="85" height="30"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fK3-bY-by9">
-                                        <rect key="frame" x="0.0" y="0.0" width="85" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cih-a9-SdG">
-                                                <rect key="frame" x="0.0" y="0.0" width="85" height="30"/>
-                                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                                <state key="normal" title="Send String">
-                                                    <color key="titleShadowColor" red="0.42467421293258667" green="0.42466151714324951" blue="0.42466866970062256" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="sendStringButtonPressed:" destination="cuW-bU-LcT" eventType="touchUpInside" id="GYA-da-25F"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" text="Stress Test" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="t8c-5K-qAj">
-                                <rect key="frame" x="157" y="314" width="95" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="JbC-8g-qYf"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csr-JW-iXU">
-                                <rect key="frame" x="131" y="141" width="130" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="2zM-aR-Xaf"/>
-                                    <constraint firstAttribute="height" constant="44" id="8yn-Zg-TM2"/>
-                                </constraints>
+                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csr-JW-iXU">
+                                <rect key="frame" x="175" y="117" width="130" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                 <state key="normal" title="Send Hex Data">
                                     <color key="titleShadowColor" red="0.42467421293258667" green="0.42466151714324951" blue="0.42466866970062256" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -131,26 +81,48 @@
                                     <action selector="sendHexButtonPressed:" destination="cuW-bU-LcT" eventType="touchUpInside" id="4G2-3l-Nwf"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0123456789ABCDEF" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="efm-pX-8v7">
-                                <rect key="frame" x="126" y="193" width="141" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="fnu-q1-Sjy"/>
-                                </constraints>
+                            <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0123456789ABCDEF" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="efm-pX-8v7">
+                                <rect key="frame" x="26" y="124" width="141" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" text="Bytes Received from Session: 0" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="8wO-Lc-f2y">
-                                <rect key="frame" x="84" y="525" width="241" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="0KB/s" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="aJ7-fx-KSz">
+                                <rect key="frame" x="141" y="445" width="197" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zdq-gk-Nlf">
-                                <rect key="frame" x="158" y="411" width="93" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="93" id="48q-8G-A7b"/>
-                                    <constraint firstAttribute="height" constant="44" id="88s-SF-34V"/>
-                                </constraints>
+                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cih-a9-SdG">
+                                <rect key="frame" x="198" y="67" width="85" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                <state key="normal" title="Send String">
+                                    <color key="titleShadowColor" red="0.42467421293258667" green="0.42466151714324951" blue="0.42466866970062256" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendStringButtonPressed:" destination="cuW-bU-LcT" eventType="touchUpInside" id="GYA-da-25F"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a string to send" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="N3U-zI-BBe">
+                                <rect key="frame" x="22" y="68" width="145" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="tUD-rQ-Y1x">
+                                <rect key="frame" x="156" y="198" width="94" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.51985817602330897" blue="0.74817066199341697" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="step10KBValueChange:" destination="cuW-bU-LcT" eventType="valueChanged" id="zpZ-zO-Gjx"/>
+                                </connections>
+                            </stepper>
+                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zdq-gk-Nlf">
+                                <rect key="frame" x="37" y="324" width="93" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.6084299976456149" blue="0.21247210926251836" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                 <state key="normal" title="Send 10MB">
                                     <color key="titleShadowColor" red="0.42467421290000001" green="0.4246615171" blue="0.4246686697" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -159,22 +131,78 @@
                                     <action selector="send10MBButtonPressed:" destination="cuW-bU-LcT" eventType="touchUpInside" id="1Kg-zP-3pQ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecc-eJ-hlZ">
-                                <rect key="frame" x="160" y="454" width="93" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Lhc-3M-GAf"/>
-                                    <constraint firstAttribute="width" constant="93" id="Vyk-hy-43d"/>
-                                </constraints>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="IT6-uH-W7w">
+                                <rect key="frame" x="156" y="332" width="94" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.66208163460092939" blue="0.22126433615310015" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="step10MBValueChange:" destination="cuW-bU-LcT" eventType="valueChanged" id="rD1-j6-Xs6"/>
+                                </connections>
+                            </stepper>
+                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lUH-jI-GVA">
+                                <rect key="frame" x="37" y="254" width="93" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.47929767984864391" green="1" blue="0.70154681305514432" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                <state key="normal" title="Send 100MB">
+                                <state key="normal" title="Send 1MB">
                                     <color key="titleShadowColor" red="0.42467421290000001" green="0.4246615171" blue="0.4246686697" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="send100MBButtonPressed:" destination="cuW-bU-LcT" eventType="touchUpInside" id="fLb-3p-20m"/>
+                                    <action selector="send1MBButtonPressed:" destination="cuW-bU-LcT" eventType="touchUpInside" id="7rY-WV-bmL"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Received Speed: 0" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="aJ7-fx-KSz">
-                                <rect key="frame" x="133" y="585" width="143" height="21"/>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="5iY-ju-5mT">
+                                <rect key="frame" x="156" y="262" width="94" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.4810294720910826" green="1" blue="0.70206655446298027" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="setp1MBValueChange:" destination="cuW-bU-LcT" eventType="valueChanged" id="ggd-4i-a2D"/>
+                                </connections>
+                            </stepper>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cam-n3-eht">
+                                <rect key="frame" x="-178" y="397" width="559" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.4554526987104871" green="0.65842891931105219" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Received Bytes:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Op5-Ix-O2x">
+                                <rect key="frame" x="7" y="411" width="123" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Speed:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fB5-KL-tg6">
+                                <rect key="frame" x="14" y="445" width="117" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Average Speed:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fF-YM-ffj">
+                                <rect key="frame" x="14" y="478" width="121" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0KB/s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FaN-U0-X1U">
+                                <rect key="frame" x="141" y="478" width="165" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9f0-Wc-Fm4">
+                                <rect key="frame" x="118" y="507" width="85" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.40772402816699471" green="0.96146370808181691" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="resetButtonTouch:" destination="cuW-bU-LcT" eventType="touchUpInside" id="3RX-XJ-Ize"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="0Bytes" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="8wO-Lc-f2y">
+                                <rect key="frame" x="141" y="410" width="174" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -182,40 +210,24 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="t8c-5K-qAj" firstAttribute="leading" secondItem="Kg2-oA-5gU" secondAttribute="leading" id="1dV-OT-LFq"/>
-                            <constraint firstItem="t8c-5K-qAj" firstAttribute="centerX" secondItem="WHv-yd-Dpm" secondAttribute="centerX" id="4Xq-iw-Owt"/>
-                            <constraint firstItem="ecc-eJ-hlZ" firstAttribute="top" secondItem="Zdq-gk-Nlf" secondAttribute="bottom" constant="3" id="D3a-Kp-WrL"/>
-                            <constraint firstItem="N3U-zI-BBe" firstAttribute="centerX" secondItem="WHv-yd-Dpm" secondAttribute="centerX" id="EPq-m6-uqr"/>
-                            <constraint firstItem="efm-pX-8v7" firstAttribute="top" secondItem="csr-JW-iXU" secondAttribute="bottom" constant="8" symbolic="YES" id="LHK-az-uz5"/>
-                            <constraint firstItem="Kg2-oA-5gU" firstAttribute="centerX" secondItem="WHv-yd-Dpm" secondAttribute="centerX" id="TX1-lL-3DF"/>
-                            <constraint firstItem="g0Q-fE-BlF" firstAttribute="top" secondItem="Kg2-oA-5gU" secondAttribute="bottom" constant="8" symbolic="YES" id="XoT-e6-h6f"/>
-                            <constraint firstItem="Zdq-gk-Nlf" firstAttribute="centerX" secondItem="t8c-5K-qAj" secondAttribute="centerX" id="cCe-4a-gZk"/>
-                            <constraint firstItem="Zdq-gk-Nlf" firstAttribute="centerX" secondItem="8wO-Lc-f2y" secondAttribute="centerX" id="cNx-4T-Svq"/>
-                            <constraint firstItem="Zdq-gk-Nlf" firstAttribute="top" secondItem="g0Q-fE-BlF" secondAttribute="top" id="fhP-Zu-yQG"/>
-                            <constraint firstItem="csr-JW-iXU" firstAttribute="centerX" secondItem="WHv-yd-Dpm" secondAttribute="centerX" id="jw9-xx-AlK"/>
-                            <constraint firstItem="t8c-5K-qAj" firstAttribute="top" secondItem="efm-pX-8v7" secondAttribute="bottom" constant="44" id="lT2-0Z-zIj"/>
-                            <constraint firstItem="N3U-zI-BBe" firstAttribute="top" secondItem="n5a-NH-cxq" secondAttribute="bottom" constant="31" id="lgq-1u-jUz"/>
-                            <constraint firstItem="ecc-eJ-hlZ" firstAttribute="trailing" secondItem="t8c-5K-qAj" secondAttribute="trailing" id="o2u-Il-vVA"/>
-                            <constraint firstItem="g0Q-fE-BlF" firstAttribute="centerX" secondItem="WHv-yd-Dpm" secondAttribute="centerX" id="pwJ-UW-o6k"/>
-                            <constraint firstItem="n5a-NH-cxq" firstAttribute="top" secondItem="bnP-JW-C2K" secondAttribute="bottom" constant="20" id="sD9-eS-GHP"/>
-                            <constraint firstItem="Kg2-oA-5gU" firstAttribute="top" secondItem="t8c-5K-qAj" secondAttribute="bottom" constant="24" id="svG-lQ-KTg"/>
-                            <constraint firstItem="n5a-NH-cxq" firstAttribute="centerX" secondItem="WHv-yd-Dpm" secondAttribute="centerX" constant="-12.5" id="vS6-Ew-5Oh"/>
-                            <constraint firstItem="efm-pX-8v7" firstAttribute="centerX" secondItem="WHv-yd-Dpm" secondAttribute="centerX" id="xYR-av-AFH"/>
-                            <constraint firstItem="8wO-Lc-f2y" firstAttribute="top" secondItem="Zdq-gk-Nlf" secondAttribute="bottom" constant="70" id="ypK-6j-Sc2"/>
-                            <constraint firstItem="csr-JW-iXU" firstAttribute="top" secondItem="N3U-zI-BBe" secondAttribute="bottom" constant="36" id="zTq-KG-xLS"/>
-                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="avgSpeedLabel" destination="FaN-U0-X1U" id="5Sa-60-vXl"/>
                         <outlet property="hexToSendText" destination="efm-pX-8v7" id="xc3-7k-K43"/>
                         <outlet property="receivedBytesCountLabel" destination="8wO-Lc-f2y" id="nAY-G7-KUF"/>
                         <outlet property="receviedSpeedLabel" destination="aJ7-fx-KSz" id="G9j-Lc-HrJ"/>
+                        <outlet property="send10KButton" destination="Kg2-oA-5gU" id="FMt-7O-Okk"/>
+                        <outlet property="send10MBButton" destination="Zdq-gk-Nlf" id="a50-F8-bME"/>
+                        <outlet property="send1MButton" destination="lUH-jI-GVA" id="ikR-AX-akW"/>
+                        <outlet property="stepper10KB" destination="tUD-rQ-Y1x" id="Zwd-Wz-G7n"/>
+                        <outlet property="stepper10MB" destination="IT6-uH-W7w" id="E5E-kw-muZ"/>
+                        <outlet property="stepper1MB" destination="5iY-ju-5mT" id="lhw-1k-dSO"/>
                         <outlet property="stringToSendText" destination="N3U-zI-BBe" id="ABA-w6-jMa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ouy-fS-LNB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="743" y="1200"/>
+            <point key="canvasLocation" x="741.60000000000002" y="1199.5502248875564"/>
         </scene>
     </scenes>
 </document>

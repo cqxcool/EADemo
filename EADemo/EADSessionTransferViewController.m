@@ -16,14 +16,22 @@
 @property(nonatomic, strong) IBOutlet EAAccessory *accessory;
 @property(nonatomic, strong) IBOutlet UILabel *receivedBytesCountLabel;
 @property (strong, nonatomic) IBOutlet UILabel *receviedSpeedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *avgSpeedLabel;
 @property(nonatomic, strong) IBOutlet UITextField *stringToSendText;
 @property(nonatomic, strong) IBOutlet UITextField *hexToSendText;
 
 @property(nonatomic, assign) NSTimeInterval sendTimeStamp;
 @property(nonatomic, assign) NSInteger       sendSize;
-
+@property(nonatomic, assign) CGFloat        lastSpeed;
 @property(nonatomic, assign) NSTimeInterval lastReceiveTimeStamp;
+@property(nonatomic, assign) NSTimeInterval startReceiveTimeStamp;
 
+@property (weak, nonatomic) IBOutlet UIStepper *stepper10KB;
+@property (weak, nonatomic) IBOutlet UIStepper *stepper1MB;
+@property (weak, nonatomic) IBOutlet UIStepper *stepper10MB;
+@property (weak, nonatomic) IBOutlet UIButton *send10KButton;
+@property (weak, nonatomic) IBOutlet UIButton *send1MButton;
+@property (weak, nonatomic) IBOutlet UIButton *send10MBButton;
 
 @end
 
@@ -83,22 +91,57 @@
 - (IBAction)send10KButtonPressed:(id)sender
 {
 #define STRESS_TEST_BYTE_COUNT (10*1024)
-    NSLog(@"send10KButtonPressed");
-    uint8_t buf[STRESS_TEST_BYTE_COUNT];
-    for(int i = 0; i < STRESS_TEST_BYTE_COUNT; i++) {
-        buf[i] = (i & 0xFF);  // fill buf with incrementing bytes;
-    }
+    int mutiple = self.stepper10KB.value;
+    self.sendSize = STRESS_TEST_BYTE_COUNT * mutiple;
     self.sendTimeStamp = [[NSDate date] timeIntervalSince1970];
-    self.sendSize = STRESS_TEST_BYTE_COUNT;
-	[[EADSessionController sharedController] writeData:[NSData dataWithBytes:buf length:STRESS_TEST_BYTE_COUNT]];
+
+    for (int i = 0 ; i < mutiple; i++) {
+        NSLog(@"send10KButtonPressed");
+        uint8_t buf[STRESS_TEST_BYTE_COUNT];
+        for(int i = 0; i < STRESS_TEST_BYTE_COUNT; i++) {
+            buf[i] = (i & 0xFF);  // fill buf with incrementing bytes;
+        }
+        [[EADSessionController sharedController] writeData:[NSData dataWithBytes:buf length:STRESS_TEST_BYTE_COUNT]];
+    }
+
 }
 - (IBAction)send10MBButtonPressed:(id)sender
 {
-    NSLog(@"send10MBButtonPressed");
-    NSMutableData *data = [[NSMutableData alloc] initWithLength:1024*1024*10];
+    int length = 1024*1024*10;
+    int mutiple = self.stepper10MB.value;
+    self.sendSize = length * mutiple;
     self.sendTimeStamp = [[NSDate date] timeIntervalSince1970];
-    self.sendSize = data.length;
+    for (int i = 0 ; i<mutiple; i++) {
+        NSLog(@"send10MBButtonPressed");
+        NSMutableData *data = [[NSMutableData alloc] initWithLength:length];
+        [[EADSessionController sharedController] writeData:data];
+    }
+}
+- (IBAction)send1MBButtonPressed:(id)sender
+{
+    int mutiple = self.stepper1MB.value;
+    int length = 1024*1024*mutiple;
+    self.sendSize = length;
+    NSLog(@"send%dMB",mutiple);
+    NSMutableData *data = [[NSMutableData alloc] initWithLength:length];
     [[EADSessionController sharedController] writeData:data];
+}
+- (IBAction)step10KBValueChange:(id)sender
+{
+    NSLog(@"value change = %.1f",self.stepper10KB.value);
+    [self.send10KButton setTitle:[NSString stringWithFormat:@"Send %d0KB",(int)self.stepper10KB.value] forState:UIControlStateNormal];
+
+}
+- (IBAction)setp1MBValueChange:(id)sender
+{
+    NSLog(@"value change = %.1f",self.stepper1MB.value);
+    [self.send1MButton setTitle:[NSString stringWithFormat:@"Send %dMB",(int)self.stepper1MB.value] forState:UIControlStateNormal];
+}
+- (IBAction)step10MBValueChange:(id)sender
+{
+    NSLog(@"value change = %.1f",self.stepper10MB.value);
+    [self.send10MBButton setTitle:[NSString stringWithFormat:@"Send %d0MB",(int)self.stepper10MB.value] forState:UIControlStateNormal];
+
 }
 
 - (IBAction)send100MBButtonPressed:(id)sender
@@ -110,6 +153,17 @@
     [[EADSessionController sharedController] writeData:data];
 
 }
+- (IBAction)resetButtonTouch:(id)sender
+{
+    self.lastSpeed = 0;
+    self.lastReceiveTimeStamp = 0;
+    self.startReceiveTimeStamp = 0;
+    _totalBytesRead = 0;
+    self.receviedSpeedLabel.text = @"0KB/s";
+    self.avgSpeedLabel.text = @"0KB/s";
+    self.receivedBytesCountLabel.text = @"0Bytes";
+}
+
 
 #pragma mark UIViewController
 
@@ -189,17 +243,26 @@
         }
     }
 
+   
     NSTimeInterval currentTimeStamp = [[NSDate date] timeIntervalSince1970] * 1000;
+  
     if (self.lastReceiveTimeStamp && newLength) {
         NSTimeInterval timeRange = currentTimeStamp - self.lastReceiveTimeStamp;
         CGFloat speed = newLength*1000/1024.0/timeRange;
-        NSString *stringSpeed = [NSString stringWithFormat:@"Received Speed:%.1fKB/s",speed];
+        NSString *stringSpeed = [NSString stringWithFormat:@"%.1fKB/s",speed];
         self.receviedSpeedLabel.text = stringSpeed;
-        
     }
-    
+    if (self.startReceiveTimeStamp && self.lastReceiveTimeStamp) {
+        NSTimeInterval timeRange = currentTimeStamp - self.startReceiveTimeStamp;
+        CGFloat speed = _totalBytesRead*1000/1024.0/timeRange;
+        NSString *avgSpeedString = [NSString stringWithFormat:@"%.1fKB/s",speed];
+        self.avgSpeedLabel.text = avgSpeedString;
+    }
+    if (self.startReceiveTimeStamp <= 0) {
+        self.startReceiveTimeStamp = currentTimeStamp;
+    }
     self.lastReceiveTimeStamp = currentTimeStamp;
-    [_receivedBytesCountLabel setText:[NSString stringWithFormat:@"Bytes Received from Session: %u", (unsigned int)_totalBytesRead]];
+    [_receivedBytesCountLabel setText:[NSString stringWithFormat:@"%u Bytes", (unsigned int)_totalBytesRead]];
 }
 
 - (void)_sessionDataWrited:(NSNotification *)notification

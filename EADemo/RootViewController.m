@@ -54,16 +54,16 @@
     [super viewDidLoad];
     
     
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-////        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"firstName = 'Bob'"];
-////        [[EAAccessoryManager sharedAccessoryManager] showBluetoothAccessoryPickerWithNameFilter:predicate completion:^(NSError * _Nullable error) {
-////            
-////        }];
-//        EADSessionTransferViewController *sessionTransferViewController =
-//        [self.storyboard instantiateViewControllerWithIdentifier:@"EADSessionTransfer"];
-//        
-//        [[self navigationController] pushViewController:sessionTransferViewController animated:YES];
-//    });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"firstName = 'Bob'"];
+//        [[EAAccessoryManager sharedAccessoryManager] showBluetoothAccessoryPickerWithNameFilter:predicate completion:^(NSError * _Nullable error) {
+//            
+//        }];
+        EADSessionTransferViewController *sessionTransferViewController =
+        [self.storyboard instantiateViewControllerWithIdentifier:@"EADSessionTransfer"];
+        
+        [[self navigationController] pushViewController:sessionTransferViewController animated:YES];
+    });
     
 }
 

@@ -17,6 +17,7 @@
 
 NSString *EADSessionDataReceivedNotification = @"EADSessionDataReceivedNotification";
 NSString *EADSessionDataWritedNotification = @"EADSessionDataWritedNotification";
+NSString *EADSessionDataWritedOnceNotification = @"EADSessionDataWritedOnceNotification";
 
 @implementation EADSessionController
 
@@ -36,6 +37,7 @@ NSString *EADSessionDataWritedNotification = @"EADSessionDataWritedNotification"
         {
             [_writeData replaceBytesInRange:NSMakeRange(0, bytesWritten) withBytes:NULL length:0];
             NSLog(@"bytesWritten %ld", (long)bytesWritten);
+            [[NSNotificationCenter defaultCenter] postNotificationName:EADSessionDataWritedOnceNotification object:[NSNumber numberWithInteger:bytesWritten]];
 
         }
     }

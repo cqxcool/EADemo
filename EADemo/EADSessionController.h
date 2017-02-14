@@ -11,6 +11,7 @@
 
 extern NSString *EADSessionDataReceivedNotification;
 extern NSString *EADSessionDataWritedNotification;
+extern NSString *EADSessionDataWritedOnceNotification;
 
 
 // NOTE: EADSessionController is not threadsafe, calling methods from different threads will lead to unpredictable results

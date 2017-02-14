@@ -13,6 +13,8 @@
 @interface EADSessionTransferViewController ()
 
 @property(nonatomic) uint32_t totalBytesRead;
+@property(nonatomic) uint32_t totalBytesWrite;
+
 @property(nonatomic, strong) IBOutlet EAAccessory *accessory;
 @property(nonatomic, strong) IBOutlet UILabel *receivedBytesCountLabel;
 @property (strong, nonatomic) IBOutlet UILabel *receviedSpeedLabel;
@@ -21,6 +23,8 @@
 @property(nonatomic, strong) IBOutlet UITextField *hexToSendText;
 
 @property(nonatomic, assign) NSTimeInterval sendTimeStamp;
+@property(nonatomic, assign) NSTimeInterval sendOnecTimeStamp;
+
 @property(nonatomic, assign) NSInteger       sendSize;
 @property(nonatomic, assign) CGFloat        lastSpeed;
 @property(nonatomic, assign) NSTimeInterval lastReceiveTimeStamp;
@@ -32,6 +36,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *send10KButton;
 @property (weak, nonatomic) IBOutlet UIButton *send1MButton;
 @property (weak, nonatomic) IBOutlet UIButton *send10MBButton;
+@property (weak, nonatomic) IBOutlet UILabel *sendBytesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sendSpeedLabel;
 
 @end
 
@@ -163,6 +169,12 @@
     self.avgSpeedLabel.text = @"0KB/s";
     self.receivedBytesCountLabel.text = @"0Bytes";
 }
+- (IBAction)sendReset:(id)sender {
+    self.sendSpeedLabel.text = @"0KB/s";
+    self.sendBytesLabel.text = @"0Bytes";
+    _totalBytesWrite = 0;
+    self.sendOnecTimeStamp = 0;
+}
 
 
 #pragma mark UIViewController
@@ -175,6 +187,8 @@
     // watch for received data from the accessory
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_sessionDataReceived:) name:EADSessionDataReceivedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_sessionDataWrited:) name:EADSessionDataWritedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_sessionDataWritedOnce:) name:EADSessionDataWritedOnceNotification object:nil];
+
 
 
     EADSessionController *sessionController = [EADSessionController sharedController];
@@ -273,5 +287,20 @@
    UIAlertView *alert =  [[UIAlertView alloc] initWithTitle:@"Send Complete" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
 }
+
+- (void)_sessionDataWritedOnce:(NSNotification *)notification
+{
+    NSInteger writeBytes = [notification.object integerValue];
+    if (self.sendOnecTimeStamp) {
+        NSInteger time = [[NSDate date] timeIntervalSince1970] - self.sendOnecTimeStamp;
+        CGFloat speed = writeBytes/1024.0/time;
+        self.sendSpeedLabel.text = [NSString stringWithFormat:@"%fKB/s",speed];
+        _totalBytesRead += writeBytes;
+        self.sendBytesLabel.text = [NSString stringWithFormat:@"%dBytes",_totalBytesWrite];
+    }
+    self.sendOnecTimeStamp = [[NSDate date] timeIntervalSince1970];
+    
+}
+
 
 @end

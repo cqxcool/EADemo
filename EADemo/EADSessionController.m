@@ -41,7 +41,8 @@ NSString *EADSessionDataWritedOnceNotification = @"EADSessionDataWritedOnceNotif
 
         }
     }
-    if (_writeData.length == 0) {
+    if (_writeData && _writeData.length == 0) {
+        _writeData = nil;
         [[NSNotificationCenter defaultCenter] postNotificationName:EADSessionDataWritedNotification object:self userInfo:nil];
     }
 }

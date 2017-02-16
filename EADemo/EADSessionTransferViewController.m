@@ -128,6 +128,7 @@
     int mutiple = self.stepper1MB.value;
     int length = 1024*1024*mutiple;
     self.sendSize = length;
+    self.sendTimeStamp = [[NSDate date] timeIntervalSince1970];
     NSLog(@"send%dMB",mutiple);
     NSMutableData *data = [[NSMutableData alloc] initWithLength:length];
     [[EADSessionController sharedController] writeData:data];
@@ -281,7 +282,7 @@
 
 - (void)_sessionDataWrited:(NSNotification *)notification
 {
-    NSInteger time = [[NSDate date] timeIntervalSince1970] - self.sendTimeStamp;
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970] - self.sendTimeStamp;
     CGFloat speed = self.sendSize/1024.0/time;
     NSString *message = [NSString stringWithFormat:@"sendtime:%ldseconds\nspeed:%.1fKB/s",(long)time,speed];
    UIAlertView *alert =  [[UIAlertView alloc] initWithTitle:@"Send Complete" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -292,10 +293,10 @@
 {
     NSInteger writeBytes = [notification.object integerValue];
     if (self.sendOnecTimeStamp) {
-        NSInteger time = [[NSDate date] timeIntervalSince1970] - self.sendOnecTimeStamp;
-        CGFloat speed = writeBytes/1024.0/time;
-        self.sendSpeedLabel.text = [NSString stringWithFormat:@"%fKB/s",speed];
-        _totalBytesRead += writeBytes;
+        NSTimeInterval time = [[NSDate date] timeIntervalSince1970] - self.sendOnecTimeStamp;
+        CGFloat currentSpeed = writeBytes/1024.0/time;
+        self.sendSpeedLabel.text = [NSString stringWithFormat:@"%.1fKB/s",currentSpeed];
+        _totalBytesWrite += writeBytes;
         self.sendBytesLabel.text = [NSString stringWithFormat:@"%dBytes",_totalBytesWrite];
     }
     self.sendOnecTimeStamp = [[NSDate date] timeIntervalSince1970];
